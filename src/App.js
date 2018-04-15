@@ -10,16 +10,23 @@ import Search from './Search'
 class BooksApp extends React.Component {
   state = {
     books: []
-  }
+  };
 
   componentWillMount() {
-    BooksAPI.getAll().then(books => this.setState({ books }));
+    this.getBooks();
+  }
+
+  getBooks() {
+    BooksAPI.getAll()
+    .then(books => this.setState({ books }))
+    .catch(() => { alert('Something went wrong with your request.'); });
   }
 
   render() {
+    const books = this.state.books;
     return (
       <div className="app">
-        {this.state.showSearchPage ?  <Search /> : <Home />}
+        {this.state.showSearchPage ?  <Search books={books} /> : <Home books={books} />}
       </div>
     )
   }

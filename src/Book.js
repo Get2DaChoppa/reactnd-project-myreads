@@ -1,19 +1,27 @@
 import React from 'react'
 import BookCtrl from './BookCtrl'
 
-class Book extends React.Component {
-    render(){
-        return (
-            <div className="book">
-                <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")' }}></div>
-                    <BookCtrl />
+function Book(props) {
+    const book = props.book;
+    const url = book.imageLinks.thumbnail;
+    const title = book.title;
+    const authors  = book.authors;
+    return (
+        <div className="book">
+            <div className="book-top">
+                <div className="book-cover"
+                style={{
+                    width: 128,
+                    height: 193,
+                    backgroundImage: `url(${url})`
+                }}>
                 </div>
-                <div className="book-title">To Kill a Mockingbird</div>
-                <div className="book-authors">Harper Lee</div>
+                <BookCtrl />
             </div>
-        )
-    }
+            <div className="book-title">{title}</div>
+            <div className="book-authors">{authors}</div>
+        </div>
+    )
 }
 
 export default Book
