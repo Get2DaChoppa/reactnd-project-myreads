@@ -1,5 +1,4 @@
 import React from 'react'
-//import ReactDOM from 'react-dom';
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import Home from './MainPage'
@@ -22,11 +21,17 @@ class BooksApp extends React.Component {
     .catch(() => { alert('Something went wrong with your request.'); });
   }
 
+  handler = (book, e) => {
+    BooksAPI.update(book, e)
+      .then(() => { this.getBooks(); })
+      .catch(() => { alert('Something went wrong with your request.'); })
+  }
+
   render() {
     const books = this.state.books;
     return (
       <div className="app">
-        {this.state.showSearchPage ?  <Search books={books} /> : <Home books={books} />}
+        {this.state.showSearchPage ?  <Search books={books} /> : <Home books={books} handler={this.handler}/>}
       </div>
     )
   }
