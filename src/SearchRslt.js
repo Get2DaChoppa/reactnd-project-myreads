@@ -5,7 +5,7 @@ function SearchRslt(props) {
     return (
         <div className="search-books-results">
           <ol className="books-grid">
-            <Grid />
+            <Grid books={props.books} handler={props.handler}/>
           </ol>
         </div>
     )
