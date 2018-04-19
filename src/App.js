@@ -9,8 +9,7 @@ import Search from './Search'
 
 class BooksApp extends React.Component {
   state = {
-    books: [],
-    showSearchPage:''
+    books: []
   };
 
   componentWillMount() {
