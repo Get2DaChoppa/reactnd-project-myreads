@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Grid from './BookGrid'
 
 function SearchRslt(props) {
@@ -10,5 +11,10 @@ function SearchRslt(props) {
         </div>
     )
 }
+
+SearchRslt.propTypes = {
+    books: PropTypes.array,
+    handler: PropTypes.func.isRequired
+};
 
 export default SearchRslt

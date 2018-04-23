@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import SearchRslt from './SearchRslt'
 import * as BooksAPI from "./BooksAPI";
 
@@ -17,9 +18,17 @@ class Search extends React.Component {
     }
 
     searchBooks(query) {
+      query = query.trim()
+      if (query) {
         BooksAPI.search(query).then((books) => {
+            if (books.error) {
+                books = []
+            }
             this.setState({ results: books });
         })
+      } else {
+            this.setState({ results: [] });
+      }
     }
 
     render(){
@@ -49,5 +58,10 @@ class Search extends React.Component {
         )
     }
 }
+
+Search.propTypes = {
+    books: PropTypes.array,
+    handler: PropTypes.func.isRequired
+};
 
 export default Search

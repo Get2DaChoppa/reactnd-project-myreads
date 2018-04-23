@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import BookCtrl from './BookCtrl'
 
 function Book(props) {
@@ -26,5 +27,10 @@ function Book(props) {
         </div>
     )
 }
+
+Book.propTypes = {
+    books: PropTypes.array,
+    handler: PropTypes.func.isRequired
+};
 
 export default Book

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Book from './Book'
 
 function Grid(props) {
@@ -12,6 +13,11 @@ function Grid(props) {
         </ol>
     );
 }
+
+Grid.propTypes = {
+    books: PropTypes.array,
+    handler: PropTypes.func.isRequired
+};
 
 export default Grid
 
