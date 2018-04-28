@@ -18,17 +18,29 @@ class Search extends React.Component {
     }
 
     searchBooks(query) {
-      query = query.trim()
-      if (query) {
+        query = query.trim()
+        if (query) {
         BooksAPI.search(query).then((books) => {
             if (books.error) {
                 books = []
             }
+            books.forEach((book) => {this.checkShelf(book);})
             this.setState({ results: books });
         })
-      } else {
+        } else {
             this.setState({ results: [] });
-      }
+        }
+    }
+
+    checkShelf(x) {
+        const shelfBooks = this.props.books;
+        const searchBook = shelfBooks.find((searchBook) => (searchBook.title === x.title));
+        if (searchBook) {
+            x.shelf = searchBook.shelf;
+        }else {
+            x.shelf = 'none';
+        }
+        return x;
     }
 
     render(){
